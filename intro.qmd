@@ -1,0 +1,184 @@
+<style>
+  body{text-align: justify}
+</style>
+
+:::: progress
+::: {.progress-bar style="width: 100%;"}
+:::
+::::
+
+# Análise Exploratória de Dados
+
+Um Mini Roteiro para Realizar uma Análise Exploratória de Dados usando a Linguagem de Programação $R_{4.3}$ com auxílio da IDE RStudio.
+
+Em estatística, a análise exploratória de dados (AED) é uma abordagem à análise de conjuntos de dados de modo a resumir suas características principais, frequentemente com métodos visuais. Um modelo estatístico pode ou não ser usado, mas primariamente a AED tem como objetivo observar o que os dados podem nos dizer além da modelagem formal ou do processo de teste de hipóteses.
+
+A análise exploratória de dados foi promovida pelo estatístico norte-americano **John Tukey**, que incentivava os estatísticos a explorar os dados e possivelmente formular hipóteses que poderiam levar a novas coletas de dados e experimentos.
+
+:::: progress
+::: {.progress-bar style="width: 100%;"}
+:::
+::::
+
+# Etapas Operacionais
+
+## Diretório de Trabalho no **R**
+
+Função básica para definir o diretório de trabalho.
+
+```{r, message = FALSE}
+setwd("A:/Usuários/ana2c/Desktop/R Projetos/SEMEST_2024")
+```
+
+### Fazendo a leitura da nossa base de dados .xlsx:
+
+```{r, base1, message = FALSE, warning= FALSE}
+
+library(readr)
+library(readxl)
+
+library(ggplot2)
+
+library(plotly)
+
+# require() # Outra forma de ativar o pacote.
+
+mercado <- read_excel("mercado.xlsx")
+mercado2 <- read_excel("mercado2.xlsx")
+
+# Nesse banco existe um outlier. A quesito de exercício, retire a linha correspondente.
+
+# Num data.base, o salário faz parte do eixo y.
+
+# Graf. de Dispersão para avaliar a relação entre duas variáveis.
+# Econometria, métodos. 
+
+
+```
+
+## Análise de Exploratória de Dados
+
+### Analisando o tempo de trabalho em relação ao valor de ganho.
+
+```{r, message = FALSE}
+
+#aes() quem é  linha e coluna.
+# O ggplot trabalha em camadas, no caso, na primeira parte definimos quem queremos estudar.
+grafico1 <- ggplot(mercado, aes(x=IDADE, y= SALARIO))+
+  geom_point(size = 2.5,
+             pch = 21, # pch muda a forma dos pontos para outras formas.
+             col = 'blue',
+             fill = 'white') +
+  geom_smooth(method = "lm")+# Aqui aplica-se o modelo linear, para ajustar o modelo ao gráfico.
+  theme_minimal()+
+    labs(x="IDADE", 
+         y="SALÁRIO", 
+         title="Diagrama de Dispersão Geral", 
+         subtitle = "Renda Salarial")
+
+ggplotly(grafico1)
+
+# O gráfico nos mostra um a possível relação entre salário e idade. Onde a medida que a pessoa envelhece, seu salário aumenta.
+
+
+```
+
+```{r, message = FALSE}
+
+
+grafico1 <- ggplot(mercado2, aes(x=IDADE, y= SALARIO))+
+  geom_point(size = 2.5,
+             pch = 21, # pch muda a forma dos pontos para outras formas.
+             col = 'blue',
+             fill = 'white') +
+  geom_smooth(method = "lm")+# Aqui aplica-se o modelo linear, para ajustar o modelo ao gráfico.
+  theme_minimal()+
+    labs(x="IDADE", 
+         y="SALÁRIO", 
+         title="Diagrama de Dispersão Geral", 
+         subtitle = "Renda Salarial")
+
+ggplotly(grafico1)
+
+# O gráfico nos mostra um a possível relação entre salário e idade. Onde a medida que a pessoa envelhece, seu salário aumenta.
+
+# * O mesmo gráfico, só que sem o nosso ponto berrante, vulgo outlier.
+
+
+```
+
+### Analisando o tempo de casa em relação ao salário.
+
+```{r, message = FALSE}
+
+gradico2 <- ggplot(mercado2, aes(x=TEMPOCASA, y= SALARIO))+
+  geom_point()+
+  geom_smooth(method = "lm", color = "yellow")
+  
+ggplotly(gradico2)
+
+```
+
+### Inserindo imagens no R
+
+| Dplyr | Ggplot | Tidyverse |
+|:----------------------:|:----------------------:|:----------------------:|
+| [![](www/dplyr.png)](https://dplyr.tidyverse.org/) | ![](www/ggplot2.png) | ![](www/tidyverse.png){width="240"} |
+
+: Ecossistema Tidyverse
+
+# Fórmulas em LaTex
+
+$$  Y_{1} = \alpha_{1}+\beta_{1}X_{1}+\beta_{2}X_{2}+\beta_{3}X_{3}+ \epsilon_{i}  $$
+
+### Lendo uma base de dados online .csv:
+
+```{r, base2}
+
+# Dados Separados por Ponto e Vírgula (;)
+
+Vendas_A = read.csv2("http://raw.githubusercontent.com/Lucianea/Alta/master/vendas.csv")
+
+# Dados separados por Vírgula (,)
+
+Vendas_B = read.csv("http://raw.githubusercontent.com/Lucianea/Alta/master/vendas1.csv")
+
+
+```
+
+```{r, message = FALSE}
+
+library(dplyr)
+
+# Estrutura de Dados: 
+
+Vendas_A %>% # Agrupa operações feitas na nossa seleção. 
+  select(filial, quinzena, valor_compra, n_itens) %>%
+  arrange(valor_compra) %>%
+  mutate(VM = valor_compra/n_itens) %>% # Realiza determinada operação e armazena numa variável.
+  arrange(VM)
+  
+  
+
+Vendas_B %>%
+  dplyr:: select(quinzena, filial, n_itens) 
+
+```
+
+## Apresentação de tabelas mais dinâmicas com o pacote $DT$
+
+```{r, message = FALSE}
+
+library(DT)
+
+datatable(mercado,
+          class = 'cell-border stripe',
+          editable = 'cell',
+          caption = 'Tabela 01: Banco de Dados sobre Funcionários do Supermercado Formosa, Belém - Pará, 2023.')
+
+```
+
+:::: progress
+::: {.progress-bar style="width: 100%;"}
+:::
+::::

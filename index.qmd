@@ -1,0 +1,9 @@
+<style>
+  body{text-align: justify}
+</style>
+
+# Prefácio {.unnumbered}
+
+Aprendendo Linguagem de Programação em **R**, utilizando ferramentas e pacotes para a análise de dados.
+
+Principais pacotes de visualização de dados: ggplot2 e Plotly.

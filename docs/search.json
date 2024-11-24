@@ -1,0 +1,62 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "SEMEST UFPA 2024",
+    "section": "",
+    "text": "Prefácio\nAprendendo Linguagem de Programação em R, utilizando ferramentas e pacotes para a análise de dados.\nPrincipais pacotes de visualização de dados: ggplot2 e Plotly.",
+    "crumbs": [
+      "Prefácio"
+    ]
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "1  Análise Exploratória de Dados",
+    "section": "",
+    "text": "2 Etapas Operacionais",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Análise Exploratória de Dados</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#diretório-de-trabalho-no-r",
+    "href": "intro.html#diretório-de-trabalho-no-r",
+    "title": "1  Análise Exploratória de Dados",
+    "section": "2.1 Diretório de Trabalho no R",
+    "text": "2.1 Diretório de Trabalho no R\nFunção básica para definir o diretório de trabalho.\n\nsetwd(\"A:/Usuários/ana2c/Desktop/R Projetos/SEMEST_2024\")\n\n\n2.1.1 Fazendo a leitura da nossa base de dados .xlsx:\n\nlibrary(readr)\nlibrary(readxl)\n\nlibrary(ggplot2)\n\nlibrary(plotly)\n\n# require() # Outra forma de ativar o pacote.\n\nmercado &lt;- read_excel(\"mercado.xlsx\")\nmercado2 &lt;- read_excel(\"mercado2.xlsx\")\n\n# Nesse banco existe um outlier. A quesito de exercício, retire a linha correspondente.\n\n# Num data.base, o salário faz parte do eixo y.\n\n# Graf. de Dispersão para avaliar a relação entre duas variáveis.\n# Econometria, métodos.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Análise Exploratória de Dados</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#análise-de-exploratória-de-dados",
+    "href": "intro.html#análise-de-exploratória-de-dados",
+    "title": "1  Análise Exploratória de Dados",
+    "section": "2.2 Análise de Exploratória de Dados",
+    "text": "2.2 Análise de Exploratória de Dados\n\n2.2.1 Analisando o tempo de trabalho em relação ao valor de ganho.\n\n#aes() quem é  linha e coluna.\n# O ggplot trabalha em camadas, no caso, na primeira parte definimos quem queremos estudar.\ngrafico1 &lt;- ggplot(mercado, aes(x=IDADE, y= SALARIO))+\n  geom_point(size = 2.5,\n             pch = 21, # pch muda a forma dos pontos para outras formas.\n             col = 'blue',\n             fill = 'white') +\n  geom_smooth(method = \"lm\")+# Aqui aplica-se o modelo linear, para ajustar o modelo ao gráfico.\n  theme_minimal()+\n    labs(x=\"IDADE\", \n         y=\"SALÁRIO\", \n         title=\"Diagrama de Dispersão Geral\", \n         subtitle = \"Renda Salarial\")\n\nggplotly(grafico1)\n\n\n\n\n# O gráfico nos mostra um a possível relação entre salário e idade. Onde a medida que a pessoa envelhece, seu salário aumenta.\n\n\ngrafico1 &lt;- ggplot(mercado2, aes(x=IDADE, y= SALARIO))+\n  geom_point(size = 2.5,\n             pch = 21, # pch muda a forma dos pontos para outras formas.\n             col = 'blue',\n             fill = 'white') +\n  geom_smooth(method = \"lm\")+# Aqui aplica-se o modelo linear, para ajustar o modelo ao gráfico.\n  theme_minimal()+\n    labs(x=\"IDADE\", \n         y=\"SALÁRIO\", \n         title=\"Diagrama de Dispersão Geral\", \n         subtitle = \"Renda Salarial\")\n\nggplotly(grafico1)\n\n\n\n\n# O gráfico nos mostra um a possível relação entre salário e idade. Onde a medida que a pessoa envelhece, seu salário aumenta.\n\n# * O mesmo gráfico, só que sem o nosso ponto berrante, vulgo outlier.\n\n\n\n2.2.2 Analisando o tempo de casa em relação ao salário.\n\ngradico2 &lt;- ggplot(mercado2, aes(x=TEMPOCASA, y= SALARIO))+\n  geom_point()+\n  geom_smooth(method = \"lm\", color = \"yellow\")\n  \nggplotly(gradico2)\n\n\n\n\n\n\n\n2.2.3 Inserindo imagens no R\n\nEcossistema Tidyverse\n\n\nDplyr\nGgplot\nTidyverse",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Análise Exploratória de Dados</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#apresentação-de-tabelas-mais-dinâmicas-com-o-pacote-dt",
+    "href": "intro.html#apresentação-de-tabelas-mais-dinâmicas-com-o-pacote-dt",
+    "title": "1  Análise Exploratória de Dados",
+    "section": "3.1 Apresentação de tabelas mais dinâmicas com o pacote \\(DT\\)",
+    "text": "3.1 Apresentação de tabelas mais dinâmicas com o pacote \\(DT\\)\n\nlibrary(DT)\n\nWarning: pacote 'DT' foi compilado no R versão 4.4.2\n\ndatatable(mercado,\n          class = 'cell-border stripe',\n          editable = 'cell',\n          caption = 'Tabela 01: Banco de Dados sobre Funcionários do Supermercado Formosa, Belém - Pará, 2023.')",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Análise Exploratória de Dados</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "2  Summary",
+    "section": "",
+    "text": "In summary, this book has no content whatsoever.\n\n1 + 1\n\n[1] 2",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  }
+]

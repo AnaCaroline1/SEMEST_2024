@@ -1,0 +1,43 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "**SEMEST UFPA 2024**"
+  subtitle: "**LIMPEZA DE DADOS A REALATÓRIOS DINÂMICOS NO R**"
+  author: 
+    - name: "**Ana Caroline Alexandre**"
+      id: md
+      url: ana2caroline44@outlook.com
+      email: ana2caroline44@outlook.com
+      corresponding: true
+      affiliation:
+        - UFPA
+        - Estudante de Graduação
+        - Rádio Web
+  page-footer:
+    left: |
+      Was Written by (VALENTE - 2024).
+    right: |
+      UFPA 2024
+  repo-url: https://github.com/AnaCaroline1
+  downloads: [pdf, docx]
+  sharing: [twitter, facebook]
+  search: true
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - summary.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: 
+      light: [lux,custom.scss]
+      dark:  [cyborg,custom.scss]
+  pdf:
+    documentclass: scrreprt
+
+editor: visual
